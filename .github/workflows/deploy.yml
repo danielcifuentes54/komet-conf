@@ -24,4 +24,5 @@ jobs:
           host: ${{ secrets.AWS_HOST }}
           username: ${{ secrets.AWS_USERNAME }}
           key: ${{ secrets.AWS_KEY }}
-          script: docker ps -q -f Name=komet-conf | xargs -r docker rm -f && docker pull ${{ secrets.DOCKER_USERNAME }}/komet-conf:latest && docker run -d --name komet-conf -p 80:8080 ${{ secrets.DOCKER_USERNAME }}/komet-conf:latest
+          port: 22
+          script: whoami
