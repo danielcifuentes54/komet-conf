@@ -1,4 +1,6 @@
-on: workflow_dispatch | push
+on:
+  workflow_dispatch:
+  push:
 name: deploy
 jobs:
   deploy:
