@@ -19,12 +19,9 @@ jobs:
           repository: ${{ github.repository }}
           tags: latest
       - name: Deploy to AWS
-        uses: peterkimzz/aws-ssm-send-command@1.0.1
-        id: ssm
+        uses: appleboy/ssh-action@master
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1
-          instance-ids: ${{ secrets.INSTANCE_ID }}
-          working-directory: /
-          command: docker ps -q -f Name=komet-conf | xargs -r docker rm -f && docker pull ${{ secrets.DOCKER_USERNAME }}/komet-conf:latest && docker run -d --name komet-conf -p 80:8080 ${{ secrets.DOCKER_USERNAME }}/komet-conf:latest
+          host: ${{ secrets.AWS_HOST }}
+          username: ${{ secrets.AWS_USERNAME }}
+          password: ${{ secrets.AWS_PASSWORD }}
+          script: docker ps -q -f Name=komet-conf | xargs -r docker rm -f && docker pull ${{ secrets.DOCKER_USERNAME }}/komet-conf:latest && docker run -d --name komet-conf -p 80:8080 ${{ secrets.DOCKER_USERNAME }}/komet-conf:latest
