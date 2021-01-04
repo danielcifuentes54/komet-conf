@@ -11,6 +11,6 @@ public class Example {
 
     @GetMapping(path = "/example")
     public ResponseEntity<String> example() {
-        return ResponseEntity.ok().body("KOMET - CONF");
+        return ResponseEntity.ok().body("KOMET - CONF !!!");
     }
 }
