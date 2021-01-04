@@ -2,7 +2,7 @@ on: push
 name: deploy
 jobs:
   deploy:
-    name: CI
+    name: CI and CD
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
@@ -18,7 +18,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: ${{ github.repository }}
           tags: latest
-      - name: CD
+      - name: Deploy to AWS
         uses: peterkimzz/aws-ssm-send-command@1.0.1
         id: ssm
         with:
